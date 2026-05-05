@@ -1,79 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import RestaurantCard from "./RestaurantCard";
-
-// ✅ MOVED OUTSIDE: Loading Skeleton Component
-const LoadingSkeleton = ({ itemsPerView }) => {
-  return (
-    <div className="flex gap-5">
-      {[...Array(itemsPerView)].map((_, index) => (
-        <div
-          key={index}
-          className="flex-shrink-0 animate-pulse"
-          style={{
-            width: `calc(${100 / itemsPerView}% - ${((itemsPerView - 1) * 20) / itemsPerView}px)`,
-          }}
-        >
-          <div className="bg-gray-200 rounded-lg overflow-hidden">
-            <div className="aspect-[4/3] bg-gray-300"></div>
-            <div className="p-4">
-              <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
-              <div className="h-3 bg-gray-300 rounded w-1/2 mb-2"></div>
-              <div className="h-3 bg-gray-300 rounded w-2/3"></div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// ✅ MOVED OUTSIDE: Error State Component
-const ErrorState = ({ error, onRetry }) => {
-  return (
-    <div className="text-center py-12">
-      <div className="text-red-500 text-6xl mb-4">⚠️</div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2">
-        Failed to Load Restaurants
-      </h3>
-      <p className="text-gray-600 mb-4">{error}</p>
-      <button
-        onClick={onRetry}
-        className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
-      >
-        Try Again
-      </button>
-    </div>
-  );
-};
-
-// ✅ MOVED OUTSIDE: Empty State Component
-const EmptyState = () => {
-  return (
-    <div className="text-center py-12">
-      <div className="text-gray-400 text-6xl mb-4">🍽️</div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2">
-        No Restaurants Found
-      </h3>
-      <p className="text-gray-600">
-        We couldn't find any restaurants at the moment. Please try again later.
-      </p>
-    </div>
-  );
-};
-
-// ✅ MOVED OUTSIDE: Header Skeleton Component (optional but good practice)
-const HeaderSkeleton = () => {
-  return (
-    <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-      <div className="h-8 bg-gray-200 rounded w-64 animate-pulse"></div>
-      <div className="flex gap-2">
-        <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
-        <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
-      </div>
-    </div>
-  );
-};
+import LoadingSkeleton from "./common/LoadingSkeleton";
+import ErrorState from "./common/ErrorState";
+import HeaderSkeleton from "./common/HeaderSkeleton";
+import EmptyState from "./common/EmptyState";
 
 const TopRestaurant = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -234,7 +165,7 @@ const TopRestaurant = () => {
             {restaurant.map((data, index) => (
               <div
                 key={data?.info?.id || index}
-                className="flex-shrink-0"
+                className="shrink-0"
                 style={{
                   width: `calc(${100 / itemsPerView}% - ${((itemsPerView - 1) * 20) / itemsPerView}px)`,
                 }}

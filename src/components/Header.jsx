@@ -8,7 +8,6 @@ const Header = () => {
   const [toggle, setToggle] = useState(false);
   const showSideMenu = () => {
     setToggle(!toggle);
-    console.log("hi");
   };
   const links = [
     {

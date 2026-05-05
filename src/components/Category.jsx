@@ -1,57 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { CDN_URL } from "../utils/constant";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
-// ✅ MOVED OUTSIDE: Loading Skeleton Component
-const LoadingSkeleton = ({ itemsPerView }) => {
-  return (
-    <div className="flex gap-4">
-      {[...Array(itemsPerView)].map((_, index) => (
-        <div
-          key={index}
-          className="flex-shrink-0 w-[80px] sm:w-[90px] md:w-[100px] animate-pulse"
-        >
-          <div className="bg-gray-200 rounded-full w-full aspect-square"></div>
-          <div className="h-2.5 bg-gray-200 rounded mt-2 w-3/4 mx-auto"></div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// ✅ MOVED OUTSIDE: Error State Component
-const ErrorState = ({ error, onRetry }) => {
-  return (
-    <div className="text-center py-6">
-      <div className="text-red-500 text-4xl mb-3">⚠️</div>
-      <h3 className="text-base font-semibold text-gray-800 mb-2">
-        Failed to Load Categories
-      </h3>
-      <p className="text-gray-600 mb-4 text-sm">{error}</p>
-      <button
-        onClick={onRetry}
-        className="px-3 py-1.5 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors text-sm"
-      >
-        Try Again
-      </button>
-    </div>
-  );
-};
-
-// ✅ MOVED OUTSIDE: Empty State Component
-const EmptyState = () => {
-  return (
-    <div className="text-center py-6">
-      <div className="text-gray-400 text-4xl mb-3">🍕</div>
-      <h3 className="text-base font-semibold text-gray-800 mb-2">
-        No Categories Found
-      </h3>
-      <p className="text-gray-600 text-sm">
-        We couldn't find any categories at the moment. Please try again later.
-      </p>
-    </div>
-  );
-};
+import EmptyState from "./common/EmptyState";
+import LoadingSkeleton from "./common/LoadingSkeleton";
+import ErrorState from "./common/ErrorState";
 
 const Category = () => {
   const [categories, setCategories] = useState([]);

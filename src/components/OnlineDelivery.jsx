@@ -1,71 +1,8 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-
-// ✅ Already correct - defined outside
-const ShimmerCard = () => {
-  return (
-    <div className="rounded-lg overflow-hidden bg-white shadow-sm">
-      <div className="relative overflow-hidden bg-gray-200 aspect-[4/3]">
-        <div className="shimmer-effect absolute inset-0"></div>
-      </div>
-      <div className="p-4">
-        <div className="h-4 bg-gray-200 rounded w-3/4 mb-2 relative overflow-hidden">
-          <div className="shimmer-effect absolute inset-0"></div>
-        </div>
-        <div className="h-3 bg-gray-200 rounded w-1/2 mb-2 relative overflow-hidden">
-          <div className="shimmer-effect absolute inset-0"></div>
-        </div>
-        <div className="h-3 bg-gray-200 rounded w-2/3 mb-2 relative overflow-hidden">
-          <div className="shimmer-effect absolute inset-0"></div>
-        </div>
-        <div className="flex items-center gap-2 mt-3">
-          <div className="h-5 bg-gray-200 rounded w-12 relative overflow-hidden">
-            <div className="shimmer-effect absolute inset-0"></div>
-          </div>
-          <div className="h-3 bg-gray-200 rounded w-16 relative overflow-hidden">
-            <div className="shimmer-effect absolute inset-0"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// ✅ MOVED OUTSIDE: Error State Component for consistency
-const ErrorState = ({ error, onRetry }) => {
-  return (
-    <div className="text-center py-12">
-      <div className="text-red-500 text-6xl mb-4">⚠️</div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2">
-        Failed to Load Restaurants
-      </h3>
-      <p className="text-gray-600 mb-4">{error}</p>
-      <button
-        onClick={onRetry}
-        className="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-300"
-      >
-        Try Again
-      </button>
-    </div>
-  );
-};
-
-// ✅ MOVED OUTSIDE: Empty State Component
-const EmptyState = () => {
-  return (
-    <div className="text-center py-12">
-      <div className="text-gray-400 text-6xl mb-4">🍽️</div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2">
-        No Restaurants Found
-      </h3>
-      <p className="text-gray-600">
-        We couldn't find any restaurants with online delivery at the moment.
-        <br />
-        Please check back later!
-      </p>
-    </div>
-  );
-};
+import ShimmerCard from "./common/ShimmerCard";
+import ErrorState from "./common/ErrorState";
+import EmptyState from "./common/EmptyState";
 
 // Global styles for shimmer effect (add this to your main CSS file or use a style tag in your root component)
 const shimmerStyles = `
