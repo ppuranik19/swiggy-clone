@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import ShimmerCard from "./common/ShimmerCard";
-import ErrorState from "./common/ErrorState";
-import EmptyState from "./common/EmptyState";
+import ShimmerCard from "../common/ShimmerCard";
+import ErrorState from "../common/ErrorState";
+import EmptyState from "../common/EmptyState";
 
 // Global styles for shimmer effect (add this to your main CSS file or use a style tag in your root component)
 const shimmerStyles = `

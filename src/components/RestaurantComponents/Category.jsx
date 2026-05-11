@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import { CDN_URL } from "../utils/constant";
+import { CDN_URL } from "../../utils/constant";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import EmptyState from "./common/EmptyState";
-import LoadingSkeleton from "./common/LoadingSkeleton";
-import ErrorState from "./common/ErrorState";
+import EmptyState from "../common/EmptyState";
+import LoadingSkeleton from "../common/LoadingSkeleton";
+import ErrorState from "../common/ErrorState";
 
 const Category = () => {
   const [categories, setCategories] = useState([]);

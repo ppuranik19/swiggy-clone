@@ -1,5 +1,6 @@
-import { CDN_URL } from "../utils/constant";
-import Star from "./Star";
+// src/components/RestaurantCard.jsx
+import { CDN_URL } from "../../utils/constant";
+import Star from "../common/Star";
 
 const RestaurantCard = (props) => {
   const { response } = props;
@@ -26,12 +27,12 @@ const RestaurantCard = (props) => {
 
   return (
     <div
-      className="w-full sm:w-[273px] flex-shrink-0 mb-4 cursor-pointer group"
+      className="w-full sm:w-68.25 shrink-0 mb-4 cursor-pointer group"
       role="article"
       aria-label={`Restaurant: ${name || "Restaurant"}`}
     >
       {/* Image Container */}
-      <div className="relative h-[182px] rounded-[15px] overflow-hidden bg-gray-100">
+      <div className="relative h-45.5 rounded-[15px] overflow-hidden bg-gray-100">
         <img
           src={
             cloudinaryImageId
@@ -49,7 +50,7 @@ const RestaurantCard = (props) => {
 
         {/* Offer Overlay */}
         {costForTwo && (
-          <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent">
+          <div className="absolute bottom-0 left-0 right-0 p-2 bg-linear-to-t from-black/70 to-transparent">
             <span className="text-white text-lg sm:text-xl font-bold tracking-tighter">
               {costForTwo}
             </span>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import RestaurantCard from "./RestaurantCard";
-import LoadingSkeleton from "./common/LoadingSkeleton";
-import ErrorState from "./common/ErrorState";
-import HeaderSkeleton from "./common/HeaderSkeleton";
-import EmptyState from "./common/EmptyState";
+import LoadingSkeleton from "../common/LoadingSkeleton";
+import ErrorState from "../common/ErrorState";
+import HeaderSkeleton from "../common/HeaderSkeleton";
+import EmptyState from "../common/EmptyState";
 
 const TopRestaurant = () => {
   const [restaurant, setRestaurant] = useState([]);
@@ -175,26 +175,6 @@ const TopRestaurant = () => {
             ))}
           </div>
         </div>
-
-        {/* Optional: Dots indicator */}
-        {restaurant.length > itemsPerView && (
-          <div className="flex justify-center gap-2 mt-6">
-            {Array.from({
-              length: Math.ceil(restaurant.length / itemsPerView),
-            }).map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx * itemsPerView)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  Math.floor(currentIndex / itemsPerView) === idx
-                    ? "w-8 bg-orange-500"
-                    : "w-2 bg-gray-300 hover:bg-gray-400"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        )}
 
         <hr className="my-8 border-gray-200" />
       </div>
