@@ -1,9 +1,11 @@
 // src/components/RestaurantCard.jsx
 import { CDN_URL } from "../../utils/constant";
 import Star from "../common/Star";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantCard = (props) => {
   const { response } = props;
+  const navigation = useNavigate();
 
   // Add safety check for response and response.info
   if (!response || !response.info) {
@@ -32,7 +34,12 @@ const RestaurantCard = (props) => {
       aria-label={`Restaurant: ${name || "Restaurant"}`}
     >
       {/* Image Container */}
-      <div className="relative h-45.5 rounded-[15px] overflow-hidden bg-gray-100">
+      <div
+        className="relative h-45.5 rounded-[15px] overflow-hidden bg-gray-100"
+        onClick={() => {
+          navigation("/recommended");
+        }}
+      >
         <img
           src={
             cloudinaryImageId

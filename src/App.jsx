@@ -1,15 +1,17 @@
+// App.js
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout"; // Import Layout
 
-// Lazy load components for better performance
 const LandingPage = lazy(() => import("./Pages/LandingPage"));
 const UserOnboardingPage = lazy(() => import("./Pages/UserOnboardingPage"));
 const NoPageFound = lazy(() => import("./Pages/NoPageFound"));
 const SearchPage = lazy(() => import("./Pages/SearchPage"));
 const RestaurantPage = lazy(() => import("./Pages/RestaurantPage"));
 const RestaurantDetail = lazy(() => import("./Pages/RestaurantDetail"));
+const RecommendedPage = lazy(() => import("./Pages/RecommendedPage"));
+const CartPage = lazy(() => import("./Pages/CartPage"));
 
-// Loading component shown while lazy-loaded components are being fetched
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="text-center">
@@ -23,27 +25,74 @@ const App = () => {
   return (
     <React.Fragment>
       <BrowserRouter>
-        {/* Suspense boundary handles the loading state for all lazy components */}
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
-            {/* Landing Page - Home route */}
+            {/* Pages WITHOUT header */}
             <Route path="/" element={<LandingPage />} />
-
-            {/* User Onboarding Page */}
-            <Route path="/onboarding" element={<UserOnboardingPage />} />
-
-            {/* Search Page */}
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/search/:query" element={<SearchPage />} />
-
-            {/* Restaurant Page with dynamic ID parameter */}
-            <Route path="/restaurant" element={<RestaurantPage />} />
-            {/* <Route path="/restaurant/:id" element={<RestaurantPage />} /> */}
-
-            <Route path="/foodoption/:slug" element={<RestaurantDetail />} />
-
-            {/* 404 Page - Catch all unmatched routes */}
             <Route path="*" element={<NoPageFound />} />
+
+            {/* Pages WITH header - wrapped in Layout */}
+            <Route
+              path="/onboarding"
+              element={
+                <Layout>
+                  <UserOnboardingPage />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/search"
+              element={
+                <Layout>
+                  <SearchPage />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/search/:query"
+              element={
+                <Layout>
+                  <SearchPage />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/restaurant"
+              element={
+                <Layout>
+                  <RestaurantPage />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/recommended"
+              element={
+                <Layout>
+                  <RecommendedPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Layout>
+                  <CartPage />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/foodoption/:slug"
+              element={
+                <Layout>
+                  <RestaurantDetail />
+                </Layout>
+              }
+            />
           </Routes>
         </Suspense>
       </BrowserRouter>
